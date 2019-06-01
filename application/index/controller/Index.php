@@ -7,4 +7,8 @@ class Index
     {
        echo 'blog';
     }
+
+    public function cyx(){
+    	echo 'cyx';
+    }
 }
