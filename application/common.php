@@ -10,3 +10,31 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+function sendJson($errorno=0,$msg='',$data=[]){
+    $result = [
+        'errorno'   => $errorno,
+        'msg'       => $msg,
+        'data'      => $data
+    ];
+    echo json_encode($result);die();
+    
+}
+
+function lists_to_array($lists){
+    $result = [];
+    foreach ($lists as $key => $value) {
+        if ($value) {
+            $result[] = $value->toArray();
+        }
+    }
+    return $result;
+}
+function get_key_value($arr,$field){
+    $result = [];
+    foreach ($arr as $key => $value) {
+        $result[$value[$field]] = $value;
+
+    }
+    return $result;
+}
