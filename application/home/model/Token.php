@@ -4,14 +4,12 @@ use think\Model;
 use think\Db;
 class Token extends Model{
 
-	public function getUserInfo($token) {
+    public function getUserInfo($token) {
         $lists = $this->where('token',$token)->find();
-        if($lists){
-            $lists->toArray();
-        }
         if(!$lists){
             return false;die;
         }
+        $lists= $lists->toArray();
         $lists['value'] = unserialize($lists['value']);
         return $lists;
     }
@@ -20,9 +18,9 @@ class Token extends Model{
         $token = $this->getToken($userInfo);
         $value = serialize($userInfo);
         $data = [
-        	'token' => $token,
-        	'value' => $value,
-        	'expire' => time()+86400*30,
+            'token' => $token,
+            'value' => $value,
+            'expire_time' => time()+86400*30,
         ];
         $this->insert($data);
         return $token;
@@ -34,3 +32,4 @@ class Token extends Model{
         return 'user_token_'.md5($time. $user);
     }
 }
+
