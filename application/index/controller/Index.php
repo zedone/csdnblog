@@ -7,6 +7,10 @@ class Index
     {
        echo 'blog';
     }
+
+    public function cyx(){
+    	echo 'cyx';
+    }
     public function crj(){
         echo "crj";
     }
