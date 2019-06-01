@@ -11,4 +11,7 @@ class Index
     public function cyx(){
     	echo 'cyx';
     }
+    public function crj(){
+        echo "crj";
+    }
 }
