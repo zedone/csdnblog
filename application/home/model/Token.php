@@ -7,7 +7,7 @@ class Token extends Model{
     public function getUserInfo($token) {
         $lists = $this->where('token',$token)->find();
         if(!$lists){
-            return false;die;
+            return [];
         }
         $lists= $lists->toArray();
         $lists['value'] = unserialize($lists['value']);
@@ -32,3 +32,4 @@ class Token extends Model{
         return 'user_token_'.md5($time. $user);
     }
 }
+

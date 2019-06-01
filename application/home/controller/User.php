@@ -1,5 +1,4 @@
 <?php
-
 namespace app\home\controller;
 
  use \think\Controller;
@@ -164,4 +163,41 @@ namespace app\home\controller;
 
         sendJson($errorno,$msg,$data);die();         
     }
- }
+
+	public function log(){
+		return $this->fetch();
+	}
+
+	public function doLogin(){
+		$users = [
+			'phone' => input('post.phone'),
+			'password' => input('post.password')
+		];
+		//dump($users);die;
+		if(empty($users['phone']) || empty($users['password'])){
+			sendJson(3,'数据不能为空',[]);
+		}
+		$userModel = new UserModel;
+		$info = $userModel -> getInfo('phone',$users['phone']);
+		$tokenModel = new TokenModel;
+		$tmp = [
+			'id'    => $info['id'],
+			'name'  => $info['name'],
+			'phone' => $info['phone'],
+			'password' => $info['password']
+		];
+		//dump($data);die;
+		if(empty($info['phone'])){
+			sendJson(2,'用户不存在',[]);		}
+		if($users['password'] == $info['password']){
+			$token = $tokenModel->setUserInfo($tmp);
+			$result = array('token'=>$token,'info'=>$tmp);
+			sendJson(0,'登录成功',$result);
+			
+		}else{
+			//sendJson($errorno,$msg,$data);
+			sendJson(1,'密码错误',[]);
+		}
+	}
+}
+
