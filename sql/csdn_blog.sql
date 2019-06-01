@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: csdn_blog
 Target Host: localhost
 Target Database: csdn_blog
-Date: 2019/6/1 10:27:38
+Date: 2019/6/1 13:36:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,14 +55,15 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
-  `phone` int(11) NOT NULL,
+  `phone` varchar(12) NOT NULL,
   `password` varchar(50) NOT NULL DEFAULT '',
   `status` int(2) NOT NULL,
   `create_time` int(20) NOT NULL,
-  `updatetime` int(20) NOT NULL,
+  `update_time` int(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `user` VALUES ('5', '陈仁杰', '12345678910', 'asd123asd', '1', '1559367194', '1559367194');
