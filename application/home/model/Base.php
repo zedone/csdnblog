@@ -66,7 +66,16 @@ class Base extends Model
         $result=self::getLists();
         $umsg=get_key_value($result,'id');
         return $umsg;
-      }
+    }
+
+    public function changeListsAll(){
+        $result=self::getListsAll();
+        if (!$result) {
+            return [];
+        }
+        $umsg=get_key_value($result,'id');
+        return $umsg;
+    }
     
     public function doupdate($id,$data){
         $result = $this->where('id', $id)->limit(1)->update($data);

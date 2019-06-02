@@ -5,6 +5,7 @@ namespace app\home\controller;
  use \app\home\model\User as UserModel;
  use \app\home\model\Token as TokenModel;
  use \app\home\model\Blog as BlogModel;
+ use \app\home\model\Classify as ClassifyModel;
  /**
   * 
   */
@@ -143,18 +144,16 @@ namespace app\home\controller;
 
         $blog_obj   = new BlogModel;
         $result     = $blog_obj->selectInfo('user_id',$user_id);
-
         $classify_obj   = new ClassifyModel;
-        $class_info     = $classify_obj->getInfo('id',$result['classify_id']);
-        $class_name     = !empty($class_info['name'])?$class_info['name']:'';
-
-        $data       = [
-            'classify_id'   => $result['classify_id'],
-            'class_name'    => $class_name,
-            'title'         => $result['title'],
-            'content'       => $result['content'],
-        ];
-
+        $class_lists = $classify_obj-> changeListsAll();
+        foreach ($result as $key => $value) {
+            $data[] = [
+                'classify_id'   => !empty($value['classify_id'])?$value['classify_id']:'',
+                'class_name'    => !empty($class_lists[$value['classify_id']])?$class_lists[$value['classify_id']]:'',
+                'title'         => !empty($value['title'])?$value['title']:'',
+                'content'       => !empty($value['content'])?$value['content']:'',
+            ];
+        }
         if (!$result) {
             $errorno    = 3;
             $msg        = '查询失败';
