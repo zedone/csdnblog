@@ -19,6 +19,9 @@ class Blog extends Controller
     	}
     	$blogModel = new BlogModel;
     	$soleBlog = $blogModel->getInfo('id',$id);
+        if(empty($soleBlog)){
+            sendJson(2,'暂无数据',[]);
+        }
         $classify = new Classify;
        // dump($soleBlog['classify_id']);die;
         $classifyRes = $classify->getInfoClassify($soleBlog['classify_id']);
