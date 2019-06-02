@@ -148,8 +148,9 @@ namespace app\home\controller;
         $class_lists = $classify_obj-> changeListsAll();
         foreach ($result as $key => $value) {
             $data[] = [
+                'blog_id'       => !empty($value['blog_id'])?$value['blog_id']:0,
                 'classify_id'   => !empty($value['classify_id'])?$value['classify_id']:'',
-                'class_name'    => !empty($class_lists[$value['classify_id']])?$class_lists[$value['classify_id']]:'',
+                'class_name'    => !empty($class_lists[$value['classify_id']]['name'])?$class_lists[$value['classify_id']]['name']:'',
                 'title'         => !empty($value['title'])?$value['title']:'',
                 'content'       => !empty($value['content'])?$value['content']:'',
             ];
