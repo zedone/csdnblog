@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: csdn_blog
 Target Host: localhost
 Target Database: csdn_blog
-Date: 2019/6/1 13:36:16
+Date: 2019/6/2 9:28:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -14,6 +14,8 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `classify_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `pic` varchar(255) NOT NULL DEFAULT '',
   `content` varchar(2000) NOT NULL DEFAULT '',
@@ -21,7 +23,7 @@ CREATE TABLE `blog` (
   `create_time` int(20) NOT NULL,
   `update_time` int(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for classify
@@ -46,7 +48,7 @@ CREATE TABLE `token` (
   `value` varchar(255) NOT NULL,
   `expire_time` int(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for user
