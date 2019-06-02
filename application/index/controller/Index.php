@@ -11,7 +11,10 @@ class Index
     public function cyx(){
     	echo 'cyx';
     }
-    public function crj(){
-        echo "crj";
+    public function heafeng(){
+        echo "123";
+    }
+    public function test(){
+        echo "123";
     }
 }
