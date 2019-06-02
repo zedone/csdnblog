@@ -19,7 +19,7 @@ class Blog extends Base
     public function formatBlog($blogLists){
         $result = [];
         foreach ($blogLists as $key => $value) {
-            $result = [
+            $result[] = [
                 'id'          => $value['id'],
                 'title'       => $value['title'],
                 'classify_id' => $value['classify_id'],
