@@ -30,6 +30,9 @@ class Base extends Model
         if ($info) {
             $info = $info->toArray();
         }
+        if(!$info){
+            return [];
+        }
         return $info;
     }
     public function selectInfo($field,$value,$limit=10){
