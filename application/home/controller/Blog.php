@@ -6,10 +6,11 @@ use app\home\model\Classify;
 class Blog extends Controller
 {
     public function index(){
-    	$indexModel = new BlogModel;
-    	$blogList = $indexModel->blogLists();
-    	//dump($blogList);die;
-    	sendJson(0,'ok',$blogList);
+    	$blogModel = new BlogModel;
+    	$blogList = $blogModel->blogLists();
+    	//var_dump($blogList);die;
+        $format = $blogModel->formatBlog($blogList);
+    	sendJson(0,'ok',$format);
     }
 
     public function detail(){

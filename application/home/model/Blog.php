@@ -16,4 +16,18 @@ class Blog extends Base
     	return $tmp;
     }
 
+    public function formatBlog($blogLists){
+        $result = [];
+        foreach ($blogLists as $key => $value) {
+            $result = [
+                'id'          => $value['id'],
+                'title'       => $value['title'],
+                'classify_id' => $value['classify_id'],
+                'pic'         => $value['pic'],
+                'status'      => $value['status']
+            ];
+        }
+        return $result;
+    }
+
 }
