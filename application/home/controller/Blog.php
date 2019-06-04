@@ -10,6 +10,10 @@ class Blog extends Controller
     	$blogList = $blogModel->blogLists();
     	//var_dump($blogList);die;
         $format = $blogModel->formatBlog($blogList);
+
+        $classify = new ClassifyModel;
+        $classifyRes = $classify->getInfoClassify($format['classify_id']);
+        $format['classify_name'] = $classifyRes['name'];
     	sendJson(0,'ok',$format);
     }
 
@@ -24,10 +28,8 @@ class Blog extends Controller
             sendJson(2,'暂无数据',[]);
         }
         $classify = new ClassifyModel;
-       // dump($soleBlog['classify_id']);die;
         $classifyRes = $classify->getInfoClassify($soleBlog['classify_id']);
         $soleBlog['classify_name'] = $classifyRes['name'];
-    	//dump($soleBlog);die;
     	sendJson(0,'ok',$soleBlog);
     }
 
@@ -41,6 +43,11 @@ class Blog extends Controller
         if(empty($sort_blog)){
             sendJson(2,'暂无数据',[]);
         }
-        sendJson(0,'ok',$sort_blog);
+        
+        $classify = new ClassifyModel;
+        $classifyRes = $classify->getInfoClassify($format['classify_id']);
+        $format['classify_name'] = $classifyRes['name'];
+
+        sendJson(0,'ok',$format);
     }
 }

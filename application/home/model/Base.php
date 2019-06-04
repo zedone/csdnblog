@@ -35,17 +35,17 @@ class Base extends Model
         }
         return $info;
     }
-    public function selectInfo($field,$value,$limit=10){
-        $info =$this->where($field,$value)->limit($limit)->select();
+    public function selectInfo($field,$value,$offset=0,$limit=10){
+        $info =$this->where($field,$value)->limit($offset,$limit)->select();
         if ($info) {
             $info = lists_to_array($info);
         }
         return $info;
     }
 
-    public function getLists($limit=10){
+    public function getLists($offset=0,$limit=10){
 
-        $lists = $this->limit($limit)->select();
+        $lists = $this->limit($offset,$limit)->select();
         if ($lists) {
             $result =lists_to_array($lists);
         }else{
